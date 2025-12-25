@@ -1,29 +1,30 @@
 pipeline {
-  agent any 
+    agent any
 
-  stages{
-    stage('checkout') {
-      steps {
-        echo 'Code already checkout by Jenkins'
-      }
-    }
-
-      stage('Build') {
-        steps {
-          bat 'mv clean package'
+    stages {
+        stage('Checkout') {
+            steps {
+                echo 'Code already checked out by Jenkins'
+            }
         }
-      }
+
+        stage('Build') {
+            steps {
+                bat 'mvn clean package'
+            }
+        }
+    }
 
     post {
-      success {
-        echo 'Build Successfully'
-      }
-      failure {
-        echo 'Build Failed'
-      }
-      always {
-        echo 'This Always Runs'
-      }
+        success {
+            echo 'Build Successfully'
+        }
+        failure {
+            echo 'Build Failed'
+        }
+        always {
+            echo 'This Always Runs'
+        }
     }
-  }
-} 
+}
+
